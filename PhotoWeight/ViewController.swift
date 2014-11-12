@@ -8,12 +8,16 @@
 
 import UIKit
 import HealthKit
+import GPUImage
 
 class ViewController: UIViewController {
 	
+	var videoCamera:GPUImageVideoCamera?
+	var filter:GPUImagePixellateFilter?
+	
 	@IBOutlet weak var weightTextField: UITextField!
 	@IBOutlet weak var enterWeightButton: UIButton!
-	
+
 	var healthStore: HKHealthStore?
 	let date: NSDate = NSDate()
 	let metadata = [ HKMetadataKeyWasUserEntered : true ]
@@ -32,6 +36,12 @@ class ViewController: UIViewController {
 	
 	// MARK: UI Setup
 	func setupUI() {
+		videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
+		videoCamera!.outputImageOrientation = .Portrait;
+		filter = GPUImagePixellateFilter()
+		videoCamera?.addTarget(filter)
+		filter?.addTarget(self.view as GPUImageView)
+		videoCamera?.startCameraCapture()
 	}
 
 	func updateUI() {
