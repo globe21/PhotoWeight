@@ -12,8 +12,10 @@ import GPUImage
 
 class ViewController: UIViewController {
 	
+	@IBOutlet var cameraView: GPUImageView!
 	var videoCamera:GPUImageVideoCamera?
-	var filter:GPUImagePixellateFilter?
+	//var filter:GPUImagePixellateFilter?
+	var filter:GPUImageLuminanceThresholdFilter?
 	
 	@IBOutlet weak var weightTextField: UITextField!
 	@IBOutlet weak var enterWeightButton: UIButton!
@@ -38,10 +40,19 @@ class ViewController: UIViewController {
 	func setupUI() {
 		videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
 		videoCamera!.outputImageOrientation = .Portrait;
-		filter = GPUImagePixellateFilter()
-		videoCamera?.addTarget(filter)
-		filter?.addTarget(self.view as GPUImageView)
-		videoCamera?.startCameraCapture()
+		
+		filter = GPUImageLuminanceThresholdFilter()
+		
+		
+		// Configure the filter chain, ending with the view
+		if let view = self.cameraView {
+				videoCamera?.addTarget((filter as GPUImageInput))
+				filter?.addTarget(view)
+				videoCamera?.startCameraCapture()
+		}
+
+		
+		
 	}
 
 	func updateUI() {

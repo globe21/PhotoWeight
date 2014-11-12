@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		226BCEE11A1328C4007999B8 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		226BCEE71A133C7F007999B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226BCEE61A133C7F007999B8 /* Main.storyboard */; };
 		22D8B7081A132351007D0170 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; };
 		2EF02BAC1A0C03220025C475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF02BAB1A0C03220025C475 /* AppDelegate.swift */; };
 		2EF02BAE1A0C03220025C475 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF02BAD1A0C03220025C475 /* ViewController.swift */; };
-		2EF02BB11A0C03220025C475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EF02BAF1A0C03220025C475 /* Main.storyboard */; };
 		2EF02BB31A0C03220025C475 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EF02BB21A0C03220025C475 /* Images.xcassets */; };
 		2EF02BB61A0C03220025C475 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EF02BB41A0C03220025C475 /* LaunchScreen.xib */; };
 		2EF02BC21A0C03220025C475 /* PhotoWeightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF02BC11A0C03220025C475 /* PhotoWeightTests.swift */; };
@@ -63,12 +63,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		226BCEE61A133C7F007999B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		22D8B6FC1A132300007D0170 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		2EF02BA61A0C03220025C475 /* PhotoWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF02BAA1A0C03220025C475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2EF02BAB1A0C03220025C475 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EF02BAD1A0C03220025C475 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2EF02BB01A0C03220025C475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2EF02BB21A0C03220025C475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2EF02BB51A0C03220025C475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2EF02BBB1A0C03220025C475 /* PhotoWeightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoWeightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +133,7 @@
 				2EF02BCB1A0C03340025C475 /* PhotoWeight.entitlements */,
 				2EF02BAB1A0C03220025C475 /* AppDelegate.swift */,
 				2EF02BAD1A0C03220025C475 /* ViewController.swift */,
-				2EF02BAF1A0C03220025C475 /* Main.storyboard */,
+				226BCEE61A133C7F007999B8 /* Main.storyboard */,
 				2EF02BB21A0C03220025C475 /* Images.xcassets */,
 				2EF02BB41A0C03220025C475 /* LaunchScreen.xib */,
 				2EF02BA91A0C03220025C475 /* Supporting Files */,
@@ -277,7 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EF02BB11A0C03220025C475 /* Main.storyboard in Resources */,
+				226BCEE71A133C7F007999B8 /* Main.storyboard in Resources */,
 				2EF02BB61A0C03220025C475 /* LaunchScreen.xib in Resources */,
 				2EF02BB31A0C03220025C475 /* Images.xcassets in Resources */,
 			);
@@ -326,14 +326,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2EF02BAF1A0C03220025C475 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2EF02BB01A0C03220025C475 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		2EF02BB41A0C03220025C475 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
