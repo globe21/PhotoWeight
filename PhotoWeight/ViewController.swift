@@ -15,7 +15,10 @@ class ViewController: UIViewController {
 	@IBOutlet var cameraView: GPUImageView!
 	var videoCamera:GPUImageVideoCamera?
 	//var filter:GPUImagePixellateFilter?
-	var filter:GPUImageLuminanceThresholdFilter?
+	var luminaceFilter: GPUImageLuminanceThresholdFilter?
+	var cropFilter: GPUImageCropFilter?
+	var upsizeFilter: GPUImageLanczosResamplingFilter?
+	
 	
 	@IBOutlet weak var weightTextField: UITextField!
 	@IBOutlet weak var enterWeightButton: UIButton!
@@ -40,19 +43,26 @@ class ViewController: UIViewController {
 	func setupUI() {
 		videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
 		videoCamera!.outputImageOrientation = .Portrait;
+		luminaceFilter = GPUImageLuminanceThresholdFilter()
+		luminaceFilter?.threshold = CGFloat(0.35)
 		
-		filter = GPUImageLuminanceThresholdFilter()
-		
+		let zoomWidth: CGFloat = 0.1
+		let zoomHeight: CGFloat = 0.1
+		cropFilter = GPUImageCropFilter(cropRegion: CGRectMake(0.5-zoomWidth/2, 0.5-zoomWidth/2, zoomHeight, zoomHeight))
+
+		upsizeFilter = GPUImageLanczosResamplingFilter()
+		upsizeFilter?.forceProcessingAtSize(CGSizeMake(1280.0, 960.0))
 		
 		// Configure the filter chain, ending with the view
 		if let view = self.cameraView {
-				videoCamera?.addTarget((filter as GPUImageInput))
-				filter?.addTarget(view)
-				videoCamera?.startCameraCapture()
+			videoCamera?.addTarget(upsizeFilter?)
+			upsizeFilter?.addTarget(cropFilter?)
+			cropFilter?.addTarget(luminaceFilter?)
+			luminaceFilter?.addTarget(view)
 		}
-
-		
-		
+		videoCamera?.startCameraCapture()
+		cameraView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill
+		cameraView.layer.cornerRadius = 10.0
 	}
 
 	func updateUI() {
@@ -88,8 +98,8 @@ class ViewController: UIViewController {
 		
 		healthStore?.saveObject(sample, withCompletion: {(success, error) in
 			if success {
+				// first technical test: write to HealhKit
 				println("Weight saved successfully ")
-				
 			} else {
 				println("Error: \(error)")
 				
@@ -98,7 +108,6 @@ class ViewController: UIViewController {
 	}
 	
 	func updateData() {
-		// first technical test: write to HealhKit
 	}
 
 	private func requestAuthorisationForHealthStore() {

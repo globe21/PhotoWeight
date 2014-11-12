@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Zef-sw-NCT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,42 +17,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="101" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5L0-GQ-d9f">
-                                <rect key="frame" x="268" y="365" width="64" height="30"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-mv-vtr" customClass="GPUImageView">
+                                <rect key="frame" x="66" y="50" width="468" height="184"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="Txc-Om-jzb"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="jDI-d8-jBN"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="184" id="qFh-P9-f8e"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8a9-c1-Cze">
-                                <rect key="frame" x="285" y="403" width="30" height="30"/>
-                                <state key="normal" title="GO">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-mv-vtr" customClass="GPUImageView">
-                                <rect key="frame" x="150" y="167" width="300" height="184"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8a9-c1-Cze" firstAttribute="top" secondItem="5L0-GQ-d9f" secondAttribute="bottom" constant="8" symbolic="YES" id="0Ss-Us-w7P"/>
-                            <constraint firstAttribute="centerX" secondItem="8a9-c1-Cze" secondAttribute="centerX" id="iuE-6M-YN3"/>
+                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="topMargin" constant="50" id="6I4-Ei-7wi"/>
+                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="leading" secondItem="MIN-nq-yYg" secondAttribute="leadingMargin" constant="50" id="WwR-mS-N1Y"/>
                             <constraint firstAttribute="centerX" secondItem="Dgy-mv-vtr" secondAttribute="centerX" id="tFW-Oc-6Gf"/>
-                            <constraint firstAttribute="centerX" secondItem="5L0-GQ-d9f" secondAttribute="centerX" id="yp9-90-yEj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dgy-mv-vtr" secondAttribute="trailing" constant="50" id="wS2-8X-5OH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="Dgy-mv-vtr" id="D2j-Eh-feJ"/>
-                        <outlet property="enterWeightButton" destination="8a9-c1-Cze" id="M73-61-L4w"/>
-                        <outlet property="weightTextField" destination="5L0-GQ-d9f" id="vIQ-4z-1fO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugn-zG-Ebt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="342"/>
+            <point key="canvasLocation" x="400" y="277"/>
         </scene>
     </scenes>
 </document>
