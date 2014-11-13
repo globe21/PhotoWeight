@@ -17,6 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-mv-vtr" customClass="GPUImageView">
+                                <rect key="frame" x="20" y="44" width="560" height="300"/>
+                                <subviews>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="41v-ob-zmD">
+                                        <rect key="frame" x="0.0" y="172" width="240" height="128"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="jDI-d8-jBN"/>
+                                    <constraint firstAttribute="height" constant="300" id="qFh-P9-f8e"/>
+                                </constraints>
+                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIp-zh-w9F">
                                 <rect key="frame" x="241" y="384" width="118" height="31"/>
                                 <constraints>
@@ -32,20 +46,22 @@
                                     <action selector="updateLuminanceThreshold:" destination="Zef-sw-NCT" eventType="valueChanged" id="jnv-yx-RIa"/>
                                 </connections>
                             </slider>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-mv-vtr" customClass="GPUImageView">
-                                <rect key="frame" x="20" y="44" width="560" height="300"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="jDI-d8-jBN"/>
-                                    <constraint firstAttribute="height" constant="300" id="qFh-P9-f8e"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LP7-wq-kAx">
+                                <rect key="frame" x="265" y="524" width="71" height="30"/>
+                                <state key="normal" title="CAPTURE">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressCaptureButton:" destination="Zef-sw-NCT" eventType="touchUpInside" id="alc-2H-b69"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="N6n-vU-Q6C" secondAttribute="centerX" id="3fX-Vf-20r"/>
                             <constraint firstAttribute="centerX" secondItem="vIp-zh-w9F" secondAttribute="centerX" id="4Qk-FG-5ct"/>
                             <constraint firstItem="Dgy-mv-vtr" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="topMargin" constant="44" id="6I4-Ei-7wi"/>
                             <constraint firstItem="vIp-zh-w9F" firstAttribute="leading" secondItem="N6n-vU-Q6C" secondAttribute="leading" id="KCw-h1-Z2h"/>
+                            <constraint firstAttribute="centerX" secondItem="LP7-wq-kAx" secondAttribute="centerX" id="TFk-aL-u3o"/>
                             <constraint firstItem="vIp-zh-w9F" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="top" constant="275" id="Tvs-9s-D7n"/>
                             <constraint firstItem="Dgy-mv-vtr" firstAttribute="leading" secondItem="MIN-nq-yYg" secondAttribute="leadingMargin" constant="4" id="WwR-mS-N1Y"/>
                             <constraint firstAttribute="centerX" secondItem="vIp-zh-w9F" secondAttribute="centerX" id="ZXr-J8-CNk"/>
@@ -55,6 +71,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Dgy-mv-vtr" secondAttribute="trailing" constant="4" id="wS2-8X-5OH"/>
                             <constraint firstItem="N6n-vU-Q6C" firstAttribute="top" secondItem="vIp-zh-w9F" secondAttribute="bottom" constant="40" id="wrf-Rq-uqE"/>
                             <constraint firstItem="N6n-vU-Q6C" firstAttribute="top" secondItem="vIp-zh-w9F" secondAttribute="bottom" constant="40" id="zNn-Oc-7Wf"/>
+                            <constraint firstItem="LP7-wq-kAx" firstAttribute="top" secondItem="N6n-vU-Q6C" secondAttribute="bottom" constant="40" id="zQD-J2-nke"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -64,6 +81,8 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="Dgy-mv-vtr" id="D2j-Eh-feJ"/>
+                        <outlet property="capturePictureButton" destination="LP7-wq-kAx" id="f8g-iG-jK5"/>
+                        <outlet property="capturedPictureView" destination="41v-ob-zmD" id="vYZ-NH-pe3"/>
                         <outlet property="thresholdSlider" destination="N6n-vU-Q6C" id="0q2-c6-MUt"/>
                         <outlet property="zoomSlider" destination="vIp-zh-w9F" id="iG7-eF-bBc"/>
                     </connections>

@@ -15,14 +15,23 @@ class ViewController: UIViewController {
 	@IBOutlet var cameraView: GPUImageView!
 	@IBOutlet weak var zoomSlider: UISlider!
 	@IBOutlet weak var thresholdSlider: UISlider!
-
-	var videoCamera:GPUImageVideoCamera?
+	@IBOutlet weak var capturePictureButton: UIButton!
+	
+	@IBOutlet weak var capturedPictureView: UIImageView!
+	
+	//var videoCamera: GPUImageVideoCamera?
+	var videoCamera: GPUImageStillCamera?
+	var dataForJPEGFile: NSData?
+	var imageFromCamera: UIImage?
+	
 	var luminaceFilter: GPUImageLuminanceThresholdFilter?
 	//var luminaceFilter: GPUImageAdaptiveThresholdFilter?
 	
 	var cropFilter: GPUImageCropFilter?
 	var upsizeFilter: GPUImageLanczosResamplingFilter?
-	let sliderMinValue: Float = 0.0
+	
+// TODO: Fix sliderMinValue to be 0.0 for all other filters. Lowerbound for zoom should be nonzero. TB
+	let sliderMinValue: Float = 0.1
 	let sliderMaxValue: Float = 1.0
 	let sliderInitialValue: Float = 0.5
 	//var sliderValue: Float?
@@ -50,7 +59,9 @@ class ViewController: UIViewController {
 	
 	// MARK: Setup
 	required init(coder aDecoder: NSCoder) {
-		videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
+		//videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
+		videoCamera = GPUImageStillCamera()
+		
 		videoCamera!.outputImageOrientation = .Portrait;
 		super.init(coder: aDecoder)
 	}
@@ -143,6 +154,25 @@ class ViewController: UIViewController {
 		}
 		
 	}
+	
+	@IBAction func didPressCaptureButton(sender: UIButton) {
+		if sender.titleLabel?.text? == "CAPTURE" {
+			
+			videoCamera?.capturePhotoAsImageProcessedUpToFilter(luminaceFilter!, withCompletionHandler: { (processedImage: UIImage?, error: NSError?) -> Void in
+				//self.dataForJPEGFile = UIImageJPEGRepresentation(processedImage, 0.8)
+				//self.imageFromCamera = processedImage
+				//self.capturedImageView.image = processedImage
+				self.capturedPictureView.image = processedImage
+				self.capturedPictureView.hidden = false
+				}
+			)
+// TODO: Figure out why text on button does not change. TB
+			sender.titleLabel!.text = "GO"
+		} else {
+			sender.titleLabel!.text = "CAPTURE"
+		}
+	}
+	
 	
 	func updateData() {
 	}
