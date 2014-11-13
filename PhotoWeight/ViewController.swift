@@ -13,13 +13,20 @@ import GPUImage
 class ViewController: UIViewController {
 	
 	@IBOutlet var cameraView: GPUImageView!
+	@IBOutlet weak var zoomSlider: UISlider!
+	@IBOutlet weak var thresholdSlider: UISlider!
+
 	var videoCamera:GPUImageVideoCamera?
-	//var filter:GPUImagePixellateFilter?
 	var luminaceFilter: GPUImageLuminanceThresholdFilter?
 	var cropFilter: GPUImageCropFilter?
 	var upsizeFilter: GPUImageLanczosResamplingFilter?
+	let sliderMinValue = 0.0
+	let sliderMaxValue = 1.0
+	let sliderInitialValue = 0.85
+	//var sliderValue: Float?
 	
-	
+	var currentFilterOperation: FilterOperationInterface?
+		
 	@IBOutlet weak var weightTextField: UITextField!
 	@IBOutlet weak var enterWeightButton: UIButton!
 
@@ -39,17 +46,42 @@ class ViewController: UIViewController {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	// MARK: UI Setup
-	func setupUI() {
+	// MARK: Setup
+	required init(coder aDecoder: NSCoder) {
 		videoCamera = GPUImageVideoCamera(sessionPreset: AVCaptureSessionPreset640x480, cameraPosition: .Back)
 		videoCamera!.outputImageOrientation = .Portrait;
+		super.init(coder: aDecoder)
+	}
+	
+	func setupUI() {
+		setupSliders()
+		setupCameraView()
+	}
+	
+	func setupSliders() {
+		if let slider = zoomSlider {
+			slider.minimumValue = Float(self.sliderMinValue)
+			slider.maximumValue = Float(self.sliderMaxValue)
+			slider.value = Float(self.sliderInitialValue)
+		}
+	}
+	
+	@IBAction func updateSliderValue(sender: UISlider) {
+		luminaceFilter?.threshold = CGFloat(sender.value)
+	}
+	
+	@IBAction func updateZoomSliderValue(sender: UISlider) {
+		let val = CGFloat(sender.value)
+		cropFilter?.cropRegion = CGRectMake(0.5-val/2, 0.5-val/2, val/2, val/2)
+	}
+	
+	func setupCameraView() {
 		luminaceFilter = GPUImageLuminanceThresholdFilter()
-		luminaceFilter?.threshold = CGFloat(0.35)
+		luminaceFilter?.threshold = CGFloat(sliderInitialValue)
 		
-		let zoomWidth: CGFloat = 0.1
-		let zoomHeight: CGFloat = 0.1
-		cropFilter = GPUImageCropFilter(cropRegion: CGRectMake(0.5-zoomWidth/2, 0.5-zoomWidth/2, zoomHeight, zoomHeight))
-
+		let initialValue = CGFloat(sliderInitialValue)
+		cropFilter = GPUImageCropFilter(cropRegion: CGRectMake(0.5-initialValue/2, 0.5-initialValue/2, initialValue, initialValue))
+		
 		upsizeFilter = GPUImageLanczosResamplingFilter()
 		upsizeFilter?.forceProcessingAtSize(CGSizeMake(1280.0, 960.0))
 		
@@ -64,12 +96,29 @@ class ViewController: UIViewController {
 		cameraView.fillMode = kGPUImageFillModePreserveAspectRatioAndFill
 		cameraView.layer.cornerRadius = 10.0
 	}
-
-	func updateUI() {
-		
-	}
+	
 	
 	// MARK: DATA Setup
+	private func requestAuthorisationForHealthStore() {
+		let dataTypesToWrite = [ HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass) ]
+		let dataTypesToRead = [
+			HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass),
+			//HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight),
+			//HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex),
+			HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth)
+		]
+		
+		self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite),
+			readTypes: NSSet(array: dataTypesToRead), completion: { (success, error) in
+				if success {
+					println("User completed authorisation request.")
+				} else {
+					println("The user cancelled the authorisation request. \(error)")
+				}
+		})
+	}
+	
+	
 	func setupData() {
 		
 		if !HKHealthStore.isHealthDataAvailable() {
@@ -81,6 +130,9 @@ class ViewController: UIViewController {
 			requestAuthorisationForHealthStore()
 		}
 		
+	}
+	
+	func updateData() {
 	}
 	
 	@IBAction func didPressUpdateWeightButton(sender: AnyObject) {
@@ -106,29 +158,6 @@ class ViewController: UIViewController {
 			}
 		})
 	}
-	
-	func updateData() {
-	}
 
-	private func requestAuthorisationForHealthStore() {
-		let dataTypesToWrite = [ HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass) ]
-		let dataTypesToRead = [
-			HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass),
-			//HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeight),
-			//HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex),
-			HKCharacteristicType.characteristicTypeForIdentifier(HKCharacteristicTypeIdentifierDateOfBirth)
-		]
-		
-		self.healthStore?.requestAuthorizationToShareTypes(NSSet(array: dataTypesToWrite),
-			readTypes: NSSet(array: dataTypesToRead), completion: { (success, error) in
-				if success {
-					println("User completed authorisation request.")
-				} else {
-					println("The user cancelled the authorisation request. \(error)")
-				}
-		})
-	}
-	
-	
 }
 

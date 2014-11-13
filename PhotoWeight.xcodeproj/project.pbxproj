@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		226BCEE11A1328C4007999B8 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		226BCEE71A133C7F007999B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226BCEE61A133C7F007999B8 /* Main.storyboard */; };
+		22D5A5FB1A14566B008722AC /* FilterOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5F91A14566B008722AC /* FilterOperations.swift */; };
+		22D5A5FC1A14566B008722AC /* FilterOperationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5FA1A14566B008722AC /* FilterOperationTypes.swift */; };
 		22D8B7081A132351007D0170 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; };
 		2EF02BAC1A0C03220025C475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF02BAB1A0C03220025C475 /* AppDelegate.swift */; };
 		2EF02BAE1A0C03220025C475 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF02BAD1A0C03220025C475 /* ViewController.swift */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		226BCEE61A133C7F007999B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22D5A5F91A14566B008722AC /* FilterOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOperations.swift; sourceTree = "<group>"; };
+		22D5A5FA1A14566B008722AC /* FilterOperationTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOperationTypes.swift; sourceTree = "<group>"; };
 		22D8B6FC1A132300007D0170 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		2EF02BA61A0C03220025C475 /* PhotoWeight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoWeight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EF02BAA1A0C03220025C475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				2EF02BCB1A0C03340025C475 /* PhotoWeight.entitlements */,
 				2EF02BAB1A0C03220025C475 /* AppDelegate.swift */,
 				2EF02BAD1A0C03220025C475 /* ViewController.swift */,
+				22D5A5F91A14566B008722AC /* FilterOperations.swift */,
+				22D5A5FA1A14566B008722AC /* FilterOperationTypes.swift */,
 				226BCEE61A133C7F007999B8 /* Main.storyboard */,
 				2EF02BB21A0C03220025C475 /* Images.xcassets */,
 				2EF02BB41A0C03220025C475 /* LaunchScreen.xib */,
@@ -297,6 +303,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D5A5FB1A14566B008722AC /* FilterOperations.swift in Sources */,
+				22D5A5FC1A14566B008722AC /* FilterOperationTypes.swift in Sources */,
 				2EF02BAE1A0C03220025C475 /* ViewController.swift in Sources */,
 				2EF02BAC1A0C03220025C475 /* AppDelegate.swift in Sources */,
 			);
