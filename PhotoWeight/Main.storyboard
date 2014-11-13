@@ -17,23 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIp-zh-w9F" userLabel="luminanceThresholdSlider">
-                                <rect key="frame" x="241" y="390" width="118" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vIp-zh-w9F">
+                                <rect key="frame" x="241" y="384" width="118" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="pfv-HZ-bAC"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="updateSliderValue:" destination="Zef-sw-NCT" eventType="valueChanged" id="Nt1-gu-qsc"/>
+                                    <action selector="updateZoomValue:" destination="Zef-sw-NCT" eventType="valueChanged" id="ujz-si-c3x"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="N6n-vU-Q6C">
-                                <rect key="frame" x="241" y="460" width="118" height="31"/>
+                                <rect key="frame" x="241" y="454" width="118" height="31"/>
                                 <connections>
-                                    <action selector="updateZoomSliderValue:" destination="Zef-sw-NCT" eventType="valueChanged" id="uIx-GJ-1s7"/>
+                                    <action selector="updateLuminanceThreshold:" destination="Zef-sw-NCT" eventType="valueChanged" id="jnv-yx-RIa"/>
                                 </connections>
                             </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgy-mv-vtr" customClass="GPUImageView">
-                                <rect key="frame" x="66" y="50" width="468" height="300"/>
+                                <rect key="frame" x="20" y="44" width="560" height="300"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="jDI-d8-jBN"/>
@@ -44,15 +44,15 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="N6n-vU-Q6C" secondAttribute="centerX" id="3fX-Vf-20r"/>
                             <constraint firstAttribute="centerX" secondItem="vIp-zh-w9F" secondAttribute="centerX" id="4Qk-FG-5ct"/>
-                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="topMargin" constant="50" id="6I4-Ei-7wi"/>
+                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="topMargin" constant="44" id="6I4-Ei-7wi"/>
                             <constraint firstItem="vIp-zh-w9F" firstAttribute="leading" secondItem="N6n-vU-Q6C" secondAttribute="leading" id="KCw-h1-Z2h"/>
                             <constraint firstItem="vIp-zh-w9F" firstAttribute="top" secondItem="MIN-nq-yYg" secondAttribute="top" constant="275" id="Tvs-9s-D7n"/>
-                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="leading" secondItem="MIN-nq-yYg" secondAttribute="leadingMargin" constant="50" id="WwR-mS-N1Y"/>
+                            <constraint firstItem="Dgy-mv-vtr" firstAttribute="leading" secondItem="MIN-nq-yYg" secondAttribute="leadingMargin" constant="4" id="WwR-mS-N1Y"/>
                             <constraint firstAttribute="centerX" secondItem="vIp-zh-w9F" secondAttribute="centerX" id="ZXr-J8-CNk"/>
                             <constraint firstAttribute="centerX" secondItem="N6n-vU-Q6C" secondAttribute="centerX" id="p0k-81-8xq"/>
                             <constraint firstItem="vIp-zh-w9F" firstAttribute="top" secondItem="Dgy-mv-vtr" secondAttribute="bottom" constant="40" id="sgJ-xd-RKq"/>
                             <constraint firstAttribute="centerX" secondItem="Dgy-mv-vtr" secondAttribute="centerX" id="tFW-Oc-6Gf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Dgy-mv-vtr" secondAttribute="trailing" constant="50" id="wS2-8X-5OH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Dgy-mv-vtr" secondAttribute="trailing" constant="4" id="wS2-8X-5OH"/>
                             <constraint firstItem="N6n-vU-Q6C" firstAttribute="top" secondItem="vIp-zh-w9F" secondAttribute="bottom" constant="40" id="wrf-Rq-uqE"/>
                             <constraint firstItem="N6n-vU-Q6C" firstAttribute="top" secondItem="vIp-zh-w9F" secondAttribute="bottom" constant="40" id="zNn-Oc-7Wf"/>
                         </constraints>
@@ -64,8 +64,8 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="Dgy-mv-vtr" id="D2j-Eh-feJ"/>
-                        <outlet property="thresholdSlider" destination="N6n-vU-Q6C" id="Yf6-ne-zNd"/>
-                        <outlet property="zoomSlider" destination="vIp-zh-w9F" id="Dd6-Zh-5TH"/>
+                        <outlet property="thresholdSlider" destination="N6n-vU-Q6C" id="0q2-c6-MUt"/>
+                        <outlet property="zoomSlider" destination="vIp-zh-w9F" id="iG7-eF-bBc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ugn-zG-Ebt" userLabel="First Responder" sceneMemberID="firstResponder"/>

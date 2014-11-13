@@ -18,11 +18,13 @@ class ViewController: UIViewController {
 
 	var videoCamera:GPUImageVideoCamera?
 	var luminaceFilter: GPUImageLuminanceThresholdFilter?
+	//var luminaceFilter: GPUImageAdaptiveThresholdFilter?
+	
 	var cropFilter: GPUImageCropFilter?
 	var upsizeFilter: GPUImageLanczosResamplingFilter?
-	let sliderMinValue = 0.0
-	let sliderMaxValue = 1.0
-	let sliderInitialValue = 0.85
+	let sliderMinValue: Float = 0.0
+	let sliderMaxValue: Float = 1.0
+	let sliderInitialValue: Float = 0.5
 	//var sliderValue: Float?
 	
 	var currentFilterOperation: FilterOperationInterface?
@@ -59,25 +61,35 @@ class ViewController: UIViewController {
 	}
 	
 	func setupSliders() {
-		if let slider = zoomSlider {
-			slider.minimumValue = Float(self.sliderMinValue)
-			slider.maximumValue = Float(self.sliderMaxValue)
-			slider.value = Float(self.sliderInitialValue)
-		}
+		zoomSlider.minimumValue = self.sliderMinValue
+		zoomSlider.maximumValue = self.sliderMaxValue
+		zoomSlider.value = self.sliderInitialValue
+
+		thresholdSlider.minimumValue = self.sliderMinValue
+		thresholdSlider.maximumValue = self.sliderMaxValue
+		thresholdSlider.value = self.sliderInitialValue
+		
+//		thresholdSlider.minimumValue = 1.0
+//		thresholdSlider.maximumValue = 20.0
+//		thresholdSlider.value = 1.0
 	}
 	
-	@IBAction func updateSliderValue(sender: UISlider) {
+	@IBAction func updateLuminanceThreshold(sender: UISlider) {
 		luminaceFilter?.threshold = CGFloat(sender.value)
+		//luminaceFilter?.blurRadiusInPixels = CGFloat(sender.value)
 	}
 	
-	@IBAction func updateZoomSliderValue(sender: UISlider) {
+	@IBAction func updateZoomValue(sender: UISlider) {
 		let val = CGFloat(sender.value)
-		cropFilter?.cropRegion = CGRectMake(0.5-val/2, 0.5-val/2, val/2, val/2)
+		cropFilter?.cropRegion = CGRectMake(0.5-val/2, 0.5-val/2, val, val)
 	}
 	
 	func setupCameraView() {
 		luminaceFilter = GPUImageLuminanceThresholdFilter()
 		luminaceFilter?.threshold = CGFloat(sliderInitialValue)
+		
+		//luminaceFilter = GPUImageAdaptiveThresholdFilter()
+		//luminaceFilter?.blurRadiusInPixels = 1.0
 		
 		let initialValue = CGFloat(sliderInitialValue)
 		cropFilter = GPUImageCropFilter(cropRegion: CGRectMake(0.5-initialValue/2, 0.5-initialValue/2, initialValue, initialValue))
