@@ -10,7 +10,7 @@ import UIKit
 import HealthKit
 import GPUImage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TesseractDelegate {
 	
 	@IBOutlet var cameraView: GPUImageView!
 	@IBOutlet weak var zoomSlider: UISlider!
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
 		if sender.titleLabel?.text? == "CAPTURE" {
 			
 			videoCamera?.capturePhotoAsImageProcessedUpToFilter(luminaceFilter!, withCompletionHandler: { (processedImage: UIImage?, error: NSError?) -> Void in
-				//self.dataForJPEGFile = UIImageJPEGRepresentation(processedImage, 0.8)
+			 	//self.dataForJPEGFile = UIImageJPEGRepresentation(processedImage, 0.8)
 				//self.imageFromCamera = processedImage
 				//self.capturedImageView.image = processedImage
 				self.capturedPictureView.image = processedImage
@@ -171,10 +171,17 @@ class ViewController: UIViewController {
 		} else {
 			sender.titleLabel!.text = "CAPTURE"
 		}
+		updateData()
 	}
 	
-	
 	func updateData() {
+		var tesseract:Tesseract = Tesseract();
+//		tesseract.language = "eng+ita";
+//		tesseract.delegate = self;
+//		tesseract.setVariableValue("01234567890", forKey: "tessedit_char_whitelist");
+//		tesseract.image = imageFromCamera;
+//		tesseract.recognize();
+//		println(tesseract.recognizedText);
 	}
 	
 	@IBAction func didPressUpdateWeightButton(sender: AnyObject) {

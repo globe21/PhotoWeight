@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		226BCEE11A1328C4007999B8 /* GPUImage.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		226BCEE71A133C7F007999B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 226BCEE61A133C7F007999B8 /* Main.storyboard */; };
+		22A980421A15B50B006EBEAA /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A980411A15B50B006EBEAA /* TesseractOCR.framework */; };
+		22A980451A172CCF006EBEAA /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A980441A172CCF006EBEAA /* libstdc++.6.0.9.dylib */; };
+		22A980501A172ED0006EBEAA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 22A9804F1A172ED0006EBEAA /* tessdata */; };
+		22A980521A172F18006EBEAA /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A980511A172F18006EBEAA /* CoreImage.framework */; };
 		22D5A5FB1A14566B008722AC /* FilterOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5F91A14566B008722AC /* FilterOperations.swift */; };
 		22D5A5FC1A14566B008722AC /* FilterOperationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D5A5FA1A14566B008722AC /* FilterOperationTypes.swift */; };
 		22D8B7081A132351007D0170 /* GPUImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D8B7051A132300007D0170 /* GPUImage.framework */; };
@@ -66,6 +70,11 @@
 
 /* Begin PBXFileReference section */
 		226BCEE61A133C7F007999B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		22A980411A15B50B006EBEAA /* TesseractOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = "<group>"; };
+		22A980431A15B98B006EBEAA /* ocrtest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ocrtest-Bridging-Header.h"; sourceTree = "<group>"; };
+		22A980441A172CCF006EBEAA /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		22A9804F1A172ED0006EBEAA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		22A980511A172F18006EBEAA /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		22D5A5F91A14566B008722AC /* FilterOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOperations.swift; sourceTree = "<group>"; };
 		22D5A5FA1A14566B008722AC /* FilterOperationTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOperationTypes.swift; sourceTree = "<group>"; };
 		22D8B6FC1A132300007D0170 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "../GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
@@ -87,7 +96,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22A980521A172F18006EBEAA /* CoreImage.framework in Frameworks */,
+				22A980451A172CCF006EBEAA /* libstdc++.6.0.9.dylib in Frameworks */,
 				22D8B7081A132351007D0170 /* GPUImage.framework in Frameworks */,
+				22A980421A15B50B006EBEAA /* TesseractOCR.framework in Frameworks */,
 				2EF02BCD1A0C03350025C475 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +126,11 @@
 		2EF02B9D1A0C03220025C475 = {
 			isa = PBXGroup;
 			children = (
+				22A980511A172F18006EBEAA /* CoreImage.framework */,
+				22A9804F1A172ED0006EBEAA /* tessdata */,
+				22A980441A172CCF006EBEAA /* libstdc++.6.0.9.dylib */,
+				22A980431A15B98B006EBEAA /* ocrtest-Bridging-Header.h */,
+				22A980411A15B50B006EBEAA /* TesseractOCR.framework */,
 				22D8B6FC1A132300007D0170 /* GPUImage.xcodeproj */,
 				2EF02BCC1A0C03350025C475 /* HealthKit.framework */,
 				2EF02BA81A0C03220025C475 /* PhotoWeight */,
@@ -284,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				226BCEE71A133C7F007999B8 /* Main.storyboard in Resources */,
+				22A980501A172ED0006EBEAA /* tessdata in Resources */,
 				2EF02BB61A0C03220025C475 /* LaunchScreen.xib in Resources */,
 				2EF02BB31A0C03220025C475 /* Images.xcassets in Resources */,
 			);
@@ -428,17 +446,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_ENTITLEMENTS = PhotoWeight/PhotoWeight.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PhotoWeight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ocrtest-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -447,17 +469,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_ENTITLEMENTS = PhotoWeight/PhotoWeight.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PhotoWeight/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ocrtest-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
